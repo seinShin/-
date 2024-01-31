@@ -1,7 +1,7 @@
 <link rel="stylesheet" href = "/resources/static/css/index.css">
 
 <div class="login-box">
-  <h2>Login</h2>
+  <h2>Interview Recipe</h2>
   <form>
     <div class="user-box">
       <input type="text" name="" required="">
