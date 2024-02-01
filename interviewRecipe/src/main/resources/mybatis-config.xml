@@ -3,6 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias type="interviewRecipe.interviewRecipe.dto.InterviewDto" alias="board"></typeAlias>
+        <typeAlias type="interviewRecipe.interviewRecipe.dto.InterviewDto" alias="interview"></typeAlias>
+        <typeAlias type="interviewRecipe.interviewRecipe.dto.MemberDto" alias="member"></typeAlias>
     </typeAliases>
 </configuration>
