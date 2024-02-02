@@ -1,4 +1,4 @@
-package interviewRecipe.interviewRecipe.controller;
+package interviewRecipe.interviewRecipe.restController;
 
 import org.springframework.web.bind.annotation.RestController;
 

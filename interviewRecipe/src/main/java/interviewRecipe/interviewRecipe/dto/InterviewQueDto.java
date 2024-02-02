@@ -1,23 +1,24 @@
 package interviewRecipe.interviewRecipe.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Getter
-@Builder
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class InterviewDto {
-
+public class InterviewQueDto {
+    private Long queId;
     private Long titleId;
-    private Long userId;
-    private String title;
+    private String question;
+    private Long order;
     private LocalDateTime regDt;
     private LocalDateTime updDt;
     private Boolean delYn;
+
 
 }

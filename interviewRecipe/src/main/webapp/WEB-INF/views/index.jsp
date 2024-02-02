@@ -18,6 +18,13 @@
       <span></span>
       Submit
     </a>
+    <a href="#" style="margin-left: 80px;">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Join
+    </a>
   </form>
 </div>
 
