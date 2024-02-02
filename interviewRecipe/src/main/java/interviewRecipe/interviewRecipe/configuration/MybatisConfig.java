@@ -11,8 +11,8 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(basePackages = "interviewRecipe.interviewRecipe.mapper",
-        annotationClass = org.springframework.stereotype.Repository.class)
+//@MapperScan(basePackages = "interviewRecipe.interviewRecipe.mapper",
+//        annotationClass = org.springframework.stereotype.Repository.class)
 public class MybatisConfig {
 
     @Bean
