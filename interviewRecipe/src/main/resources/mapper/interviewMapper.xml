@@ -3,6 +3,40 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Interview">
+    <select id="findOne" parameterType="Long" resultType="InterviewDto">
+        /* findOne :: 인터뷰 조회 */
+        SELECT *
+        FROM tb_interview
+        WHERE titleId = #{titleId}
+    </select>
 
+    <select id="findAll" resultType="List">
+        /* findAll :: 인터뷰 전체 조회 */
+        SELECT *
+        FROM tb_interview
+        WHERE delYn != 0
+    </select>
+
+    <insert id="save" parameterType="InterviewDto" useGeneratedKeys="true" keyProperty="id">
+        /* save :: 인터뷰 주제 등록 */
+        INSERT INTO tb_interview
+        SET userId=#{userId}
+        , title=#{title}
+        , regDt=NOW()
+    </insert>
+
+    <update id="update" parameterType="InterviewDto">
+        /* update :: 인터뷰 주제 수정 */
+        UPDATE tb_interview
+        SET title = #{title}
+        ,updDt = Now()
+        WHERE titleId = #{titleId}
+    </update>
+
+    <delete id="delete" parameterType="Long">
+        /* delete :: 인터뷰 주제 삭제 */
+        DELETE FROM tb_interview
+        WHERE titleId = #{titleId}
+    </delete>
 
 </mapper>

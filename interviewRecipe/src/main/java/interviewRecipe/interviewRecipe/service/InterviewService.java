@@ -14,9 +14,7 @@ public class InterviewService {
     private final InterviewMapper interviewMapper;
 
     //주제 등록
-    public void save(InterviewDto interviewDto){
-        interviewMapper.save(interviewDto);
-    }
+    public int save(InterviewDto interviewDto){ return interviewMapper.save(interviewDto); }
 
     //주제 전체 조회
     public List<InterviewDto> interviewDtoList(){
@@ -24,14 +22,17 @@ public class InterviewService {
     }
 
     //주제 조회
-    public InterviewDto getInterview(Long userId){
-         return interviewMapper.findOne(userId);
+    public InterviewDto getInterview(Long titleId){
+         return interviewMapper.findOne(titleId);
     }
 
     //주제 수정
-    public void update(InterviewDto interviewDto){
-        interviewMapper.update(interviewDto);
+    public int update(InterviewDto interviewDto){
+        return interviewMapper.update(interviewDto);
     }
+
+    //주제 삭제
+    public int delete(Long titleId){ return interviewMapper.delete(titleId);}
 
 
 

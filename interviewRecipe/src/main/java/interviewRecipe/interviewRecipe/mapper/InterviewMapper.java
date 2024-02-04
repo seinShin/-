@@ -9,15 +9,18 @@ import java.util.List;
 public interface InterviewMapper {
 
     // 주제 등록
-    void save(InterviewDto interviewDto);
+    int save(InterviewDto interviewDto);
 
     // 주제 전체 조회
     List<InterviewDto> findAll();
 
     // 주제 조회
-    InterviewDto findOne(Long userId);
+    InterviewDto findOne(Long titleId);
 
     // 주제 수정
-    void update(InterviewDto interviewDto);
+    int update(InterviewDto interviewDto);
+
+    // 주제 삭제
+    int delete(Long titleId);
 }
 
