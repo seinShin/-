@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -42,10 +43,14 @@ public class InterviewController {
     }
 
     //주제 수정
-
     @PutMapping("/{titleId}")
-    public ResponseEntity<Integer> interviewUpdate(@PathVariable int titleId, Model model){
-        return ResponseEntity.ok(interviewService.delete((long) titleId));
+    public ResponseEntity<Integer> interviewUpdate(@PathVariable int titleId, InterviewDto interviewDto){
+        InterviewDto interview = interviewService.getInterview((long)titleId);
+        interview.builder()
+                .title(interviewDto.getTitle())
+                .updDt(LocalDateTime.now())
+                .build();
+        return ResponseEntity.ok(interviewService.update(interview));
     }
 
     //주제 삭제
