@@ -11,16 +11,20 @@ import java.util.List;
 @Mapper
 public interface InterviewQueMapper{
     // 질문 등록
-    void save(InterviewQueDto interviewQueDto);
+    int save(InterviewQueDto interviewQueDto);
 
     // 질문 전체 조회
-    List<InterviewQueDto> interviewQueList();
+    List<InterviewQueDto> findAll(Long titleId);
 
-//    // 질문 조회
-//    InterviewQueDto finById(Long titleId);
+    // 질문 조회
+    InterviewQueDto finById(Long titleId);
 
-    // 질문 순서 변경
-    void update(InterviewQueDto interviewQueDto);
+    // 질문 변경
+    int update(InterviewQueDto interviewQueDto);
 
+    //질문 삭제
+    int delete(Long queId);
+
+    //질문 순서 변경
 }
 

@@ -1,15 +1,11 @@
 package interviewRecipe.interviewRecipe.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class InterviewQueDto {
     private Long queId;
@@ -21,4 +17,14 @@ public class InterviewQueDto {
     private Boolean delYn;
 
 
+    @Builder
+    public InterviewQueDto(Long queId, Long titleId, String question, Long order, LocalDateTime regDt, LocalDateTime updDt, Boolean delYn) {
+        this.queId = queId;
+        this.titleId = titleId;
+        this.question = question;
+        this.order = order;
+        this.regDt = regDt;
+        this.updDt = updDt;
+        this.delYn = delYn;
+    }
 }

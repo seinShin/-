@@ -4,6 +4,7 @@
 <configuration>
     <typeAliases>
         <typeAlias type="interviewRecipe.interviewRecipe.dto.InterviewDto" alias="interview"></typeAlias>
+        <typeAlias type="interviewRecipe.interviewRecipe.dto.InterviewQueDto" alias="interviewQue"></typeAlias>
         <typeAlias type="interviewRecipe.interviewRecipe.dto.MemberDto" alias="member"></typeAlias>
     </typeAliases>
 </configuration>
