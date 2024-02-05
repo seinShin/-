@@ -33,10 +33,11 @@
         WHERE titleId = #{titleId}
     </update>
 
-    <delete id="delete" parameterType="Long">
-        /* delete :: 인터뷰 주제 삭제 */
-        DELETE FROM tb_interview
+    <update id="delete" parameterType="Long">
+        /* update :: 인터뷰 주제 삭제 */
+        UPDATE tb_interview
+        SET delYn = "Y"
         WHERE titleId = #{titleId}
-    </delete>
+    </update>
 
 </mapper>
