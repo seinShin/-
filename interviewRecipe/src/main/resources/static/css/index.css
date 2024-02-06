@@ -19,20 +19,18 @@ body {
 .indexLine {
   box-sizing: border-box;
   /* position: absolute; */
-  width: 435px;
-  height: 418px;
+  width: 439px;
+  height: 422px;
   border: 1px solid #FFFFFF;
   box-shadow: 26px 15px 34px -8px rgba(0, 0, 0, 0.25);
   border-radius: 11px;
-  margin-left: 405px;
-  margin-top: 211px;
-  margin-bottom: 310px;
+  margin : 138px 549px;
 }
 
 
 .login-box {
   position: absolute;
-  top: 50%;
+  top: 49%;
   left: 50%;
   width: 400px;
   padding: 40px;
