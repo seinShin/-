@@ -1,0 +1,65 @@
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    height: 100%;
+}
+body {
+    margin:0;
+    padding:0;
+    font-family:'GangwonEdu_OTFBoldA', 'Playfair Display', serif;
+    background: linear-gradient(#141e30, #243b55);
+}
+
+.logo {
+    margin-left: 30px;
+    margin-top: 30px;
+    padding: 0;
+    color: #fff;
+    text-align: justify;
+    font-weight: 100;
+    font-size:30px
+}
+
+.indexLine {
+    box-sizing: border-box;
+    /* position: absolute; */
+    width: 476px;
+    height: 543px;
+    border: 1px solid #FFFFFF;
+    box-shadow: 26px 15px 34px -8px rgba(0, 0, 0, 0.25);
+    border-radius: 17px;
+    margin-left: 372px;
+    margin-top: 73px;
+    margin-bottom: 310px;
+    display: grid;
+}
+.d_flex{
+    display: flex;
+    justify-content: center;
+}
+
+.selectBoxes{
+    margin-top: 30px;
+}
+.indexLine .lines {
+    width: 272px;
+    border: solid 1px;
+    border-radius: 10px;
+    color: white;
+    /*margin-top: 60px;*/
+}
+
+.indexLine .selectTitle{
+    color: white;
+    /*margin: 35px 155px;*/
+    font-size: x-large;
+    justify-content: center;
+    padding-top: 5px;
+}
+
+.en {font-family:'Playfair Display', serif; font-weight: lighter;}
