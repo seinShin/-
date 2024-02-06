@@ -18,7 +18,7 @@ body {
 
 .indexLine {
   box-sizing: border-box;
-  /* position: absolute; */
+  position: absolute;
   width: 439px;
   height: 422px;
   border: 1px solid #FFFFFF;
