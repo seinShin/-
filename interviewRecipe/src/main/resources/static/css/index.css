@@ -1,12 +1,34 @@
+
+@font-face {
+  font-family: 'GangwonEdu_OTFBoldA';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html {
   height: 100%;
 }
 body {
   margin:0;
   padding:0;
-  font-family: sans-serif;
+  font-family:'GangwonEdu_OTFBoldA', 'Playfair Display', serif;
   background: linear-gradient(#141e30, #243b55);
 }
+
+.indexLine {
+  box-sizing: border-box;
+  /* position: absolute; */
+  width: 435px;
+  height: 418px;
+  border: 1px solid #FFFFFF;
+  box-shadow: 26px 15px 34px -8px rgba(0, 0, 0, 0.25);
+  border-radius: 11px;
+  margin-left: 405px;
+  margin-top: 211px;
+  margin-bottom: 310px;
+}
+
 
 .login-box {
   position: absolute;
@@ -100,6 +122,7 @@ body {
   animation: btn-anim1 1s linear infinite;
 }
 
+
 @keyframes btn-anim1 {
   0% {
     left: -100%;
@@ -165,3 +188,5 @@ body {
     bottom: 100%;
   }
 }
+
+.en {font-family:'Playfair Display', serif;}
