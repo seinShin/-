@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
 
     // 회원 로그인
-
+    @GetMapping("/main")
+    public String main(){
+        return "/main";
+    }
 
     // 메인 페이지
+
 }

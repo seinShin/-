@@ -5,14 +5,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 @RequestMapping("/member")
 public class MemberController {
 
 
     @GetMapping("join")
     public String joinPage(){
-        System.out.println("023123");
+        System.out.println("123123");
         return "/member/join";
     }
 }
