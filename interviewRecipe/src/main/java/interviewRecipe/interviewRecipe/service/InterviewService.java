@@ -5,6 +5,7 @@ import interviewRecipe.interviewRecipe.mapper.InterviewMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -28,7 +29,14 @@ public class InterviewService {
 
     //주제 수정
     public int update(InterviewDto interviewDto){
-        return interviewMapper.update(interviewDto);
+        InterviewDto interview = getInterview(interviewDto.getTitleId());
+        interview = interview.builder()
+                .titleId(interviewDto.getTitleId())
+                .userId(interviewDto.getUserId())
+                .title(interviewDto.getTitle())
+                .updDt(LocalDateTime.now())
+                .build();
+        return interviewMapper.update(interview);
     }
 
     //주제 삭제

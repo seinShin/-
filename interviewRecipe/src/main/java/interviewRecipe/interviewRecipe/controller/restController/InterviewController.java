@@ -21,8 +21,6 @@ public class InterviewController {
     //주제 등록
     @PostMapping("")
     public ResponseEntity<Integer> createInterview(@RequestBody InterviewDto interviewDto){
-        System.out.println(interviewDto.getUserId());
-        System.out.println(interviewDto.getTitle());
         int rst = interviewService.save(interviewDto);
         return ResponseEntity.ok(rst);
     }
@@ -43,14 +41,7 @@ public class InterviewController {
     //주제 수정
     @PatchMapping("")
     public ResponseEntity<Integer> interviewUpdate(@RequestBody InterviewDto interviewDto){
-        InterviewDto interview = interviewService.getInterview(interviewDto.getTitleId());
-        interview = interview.builder()
-                .titleId(interviewDto.getTitleId())
-                .userId(interviewDto.getUserId())
-                .title(interviewDto.getTitle())
-                .updDt(LocalDateTime.now())
-                .build();
-        return ResponseEntity.ok(interviewService.update(interview));
+        return ResponseEntity.ok(interviewService.update(interviewDto));
     }
 
     //주제 삭제
