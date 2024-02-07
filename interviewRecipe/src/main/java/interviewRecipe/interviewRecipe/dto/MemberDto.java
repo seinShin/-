@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 
 @Getter
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
 public class MemberDto {
     private Long userId;
@@ -21,4 +20,15 @@ public class MemberDto {
     private LocalDateTime regDt;
     private LocalDateTime updDt;
 
+    @Builder
+    public MemberDto(Long userId, String groupCd, String userNm, String userNick, String userPw, Boolean reviewYn, LocalDateTime regDt, LocalDateTime updDt) {
+        this.userId = userId;
+        this.groupCd = groupCd;
+        this.userNm = userNm;
+        this.userNick = userNick;
+        this.userPw = userPw;
+        this.reviewYn = reviewYn;
+        this.regDt = regDt;
+        this.updDt = updDt;
+    }
 }
