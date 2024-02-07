@@ -5,6 +5,7 @@ import interviewRecipe.interviewRecipe.mapper.InterviewQueMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -26,7 +27,14 @@ public class InterviewQueService {
     }
     //질문 수정
     public int update(InterviewQueDto interviewQueDto){
-        return interviewQueMapper.update(interviewQueDto);
+        InterviewQueDto interviewQue = finById(interviewQueDto.getQueId());
+        interviewQue = interviewQue.builder()
+                .queId(interviewQueDto.getQueId())
+                .titleId(interviewQueDto.getTitleId())
+                .question(interviewQueDto.getQuestion())
+                .updDt(LocalDateTime.now())
+                .build();
+        return interviewQueMapper.update(interviewQue);
     }
     //질문 삭제
     public int delete(Long queId){

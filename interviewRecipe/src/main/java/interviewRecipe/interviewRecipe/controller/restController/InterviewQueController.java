@@ -17,16 +17,15 @@ public class InterviewQueController {
     private final InterviewQueService interviewQueService;
 
     // 질문 등록
-    @PostMapping("/")
-    public ResponseEntity<Integer> createInterviewQue(InterviewQueDto interviewQueDto){
+    @PostMapping
+    public ResponseEntity<Integer> createInterviewQue(@RequestBody InterviewQueDto interviewQueDto){
         int rst = interviewQueService.save(interviewQueDto);
         return ResponseEntity.ok(rst);
     }
     // 주제 별 질문 전체 조회
     @GetMapping("/{titleId}")
     public ResponseEntity<List<InterviewQueDto>> interviewQueList(
-            @PathVariable int titleId,
-            Model model){
+            @PathVariable int titleId){
         return ResponseEntity.ok(interviewQueService.findAll((long) titleId));
 
     }
@@ -39,19 +38,14 @@ public class InterviewQueController {
 
 
     // 질문 수정
-    @PutMapping("/")
-    public ResponseEntity<Integer> updateInterviewQue(InterviewQueDto interviewQueDto){
-        InterviewQueDto interviewQue = interviewQueService.finById(interviewQueDto.getQueId());
-        interviewQue = InterviewQueDto.builder()
-                .question(interviewQue.getQuestion())
-                .updDt(LocalDateTime.now())
-                .build();
-        return ResponseEntity.ok(interviewQueService.update(interviewQue));
+    @PatchMapping
+    public ResponseEntity<Integer> updateInterviewQue(@RequestBody InterviewQueDto interviewQueDto){
+        return ResponseEntity.ok(interviewQueService.update(interviewQueDto));
 
     }
 
     // 질문 삭제
-    @DeleteMapping("/{queId}")
+    @PatchMapping("/{queId}")
     public ResponseEntity<Integer> deleteInterviewQue(@PathVariable int queId){
         return ResponseEntity.ok(interviewQueService.delete((long)queId));
     }
