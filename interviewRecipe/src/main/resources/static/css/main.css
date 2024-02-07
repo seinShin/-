@@ -60,4 +60,9 @@ body {
     padding-top: 5px;
 }
 
+.icons {
+    position: fixed;
+    bottom: 58px;
+    right: 9px;
+}
 .en {font-family:'Playfair Display', serif; font-weight: lighter;}
