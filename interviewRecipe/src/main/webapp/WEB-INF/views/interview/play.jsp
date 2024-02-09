@@ -50,34 +50,12 @@ pageEncoding="utf-8"%>
             <div class="form-box">
                 <form action="">
                     <fieldset>
-                        <legend>면접 주제 리스트</legend>
-                        <h2 class="form-tit">나의 모의 면접</h2>
+                        <legend>모의면접 하기</legend>
+                        <h2 class="form-tit">KTDS 면접 준비</h2>
 
-                        <div class="form-list">
-                            <ul>
-                                <li class="active">
-                                    <!-- s:active -->
-                                    <button type="button">KTDS 면접 준비</button>
-                                    <i class="fas fa-times-circle"></i>
-                                    <!-- e:active -->
-                                </li>
-                                <li>
-                                    <button type="button">KTDS 면접 준비</button>
-                                    <i class="fas fa-times-circle"></i>
-                                </li>
-                                <li>
-                                    <button type="button">KTDS 면접 준비</button>
-                                    <i class="fas fa-times-circle"></i>
-                                </li>
-                                <li>
-                                    <button type="button">KTDS 면접 준비</button>
-                                    <i class="fas fa-times-circle"></i>
-                                </li>
-                                <li>
-                                    <button type="button">KTDS 면접 준비</button>
-                                    <i class="fas fa-times-circle"></i>
-                                </li>
-                            </ul>
+                        <div class="canvas-box">
+                            <p>Q. 본인은 리더형인가요 팔로우 형인가요?</p>
+                            <div class="canvas-content"></div>
                         </div>
                     </fieldset>
                 </form>
@@ -86,8 +64,9 @@ pageEncoding="utf-8"%>
 
         <!-- s:floating-menu -->
         <div class="floating-menu">
+            <a href="#" class="volume"><i class="fas fa-volume-up"></i></a>
+            <a href="#" class="chat"><i class="fas fa-comments"></i></a>
             <a href="#" class="home"><i class="fas fa-paper-plane"></i></a>
-            <a href="#" class="menu"><i class="fas fa-bars"></i></a>
         </div>
         <!-- e:floating-menu -->
 

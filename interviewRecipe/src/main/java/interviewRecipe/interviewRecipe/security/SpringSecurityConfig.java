@@ -27,7 +27,7 @@ public class SpringSecurityConfig {
         http.csrf().disable().cors().disable()
                 .authorizeHttpRequests(request -> request
                         .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-                        .requestMatchers("/resources/**").permitAll()
+                        .requestMatchers("/static/**").permitAll()
                         .requestMatchers("/index", "/").permitAll()
                         .requestMatchers("/member/join").permitAll()
                         .requestMatchers("/login").permitAll()
