@@ -1,15 +1,13 @@
 package interviewRecipe.interviewRecipe.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Builder
 @NoArgsConstructor
+@ToString
 public class MemberDto {
     private Long userId;
     private String groupCd;
@@ -31,4 +29,5 @@ public class MemberDto {
         this.regDt = regDt;
         this.updDt = updDt;
     }
+
 }

@@ -2,7 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Member">
+<mapper namespace="interviewRecipe.interviewRecipe.mapper.MemberMapper">
+    <select id="findOne" parameterType="String" resultType="interviewRecipe.interviewRecipe.dto.MemberDto">
+        /* findOne :: 인터뷰 조회 */
+        SELECT *
+        FROM tb_mem
+        WHERE userNm= #{userNm}
+    </select>
 
 
 </mapper>
