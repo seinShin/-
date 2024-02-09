@@ -47,6 +47,10 @@ dependencies {
 
 	// 개발용 의존성 추가 (Spring Boot 테스트 관련)
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// security 의존성 추가
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
 }
 
 tasks.named('test') {
