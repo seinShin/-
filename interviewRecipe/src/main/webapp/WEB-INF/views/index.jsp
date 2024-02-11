@@ -54,8 +54,8 @@ pageEncoding="utf-8"%>
 	            		<h2 class="form-tit">Interview Recipe</h2>
 	            		<div class="form-group type2">
 	            			<div class="form-group-inner">
-		            			<label for="userName" class="form-label">Username</label>
-		            			<input type="text" id="userName" name="userNm" class="form-control">
+		            			<label for="userNickname" class="form-label">Username</label>
+		            			<input type="text" id="userNickname" name="userNick" class="form-control">
 	            			</div>
 	            		</div>
 	            		<div class="form-group type2">
@@ -70,7 +70,7 @@ pageEncoding="utf-8"%>
 	            				<span></span>
 	            				<span></span>
 	            				<span></span>
-		            			SUBMIT
+		            			LOGIN
 		            		</button>
 	            			<button type="button" class="btn-form" id="joinBtn">
 								<a href="member/join" id="toJoin" style="display: none;"></a>
