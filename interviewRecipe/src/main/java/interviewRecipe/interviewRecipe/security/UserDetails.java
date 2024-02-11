@@ -1,6 +1,8 @@
 package interviewRecipe.interviewRecipe.security;
 
 import interviewRecipe.interviewRecipe.dto.MemberDto;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -26,7 +28,7 @@ public class UserDetails implements org.springframework.security.core.userdetail
 
     @Override
     public String getUsername() {
-        return member.getUserNm();
+        return member.getUserNick();
     }
 
     @Override
