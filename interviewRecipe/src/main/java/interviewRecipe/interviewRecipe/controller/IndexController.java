@@ -1,7 +1,14 @@
 package interviewRecipe.interviewRecipe.controller;
 
+import interviewRecipe.interviewRecipe.dto.MemberDto;
+import interviewRecipe.interviewRecipe.security.UserDetails;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -32,9 +39,9 @@ public class IndexController {
      * */
     @GetMapping("/member/join")
     public String joinPage(){
+
         return "member/join";
     }
-
 
     @GetMapping("interview")
     public String interviewTest(){

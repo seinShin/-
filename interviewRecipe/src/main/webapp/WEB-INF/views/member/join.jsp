@@ -48,7 +48,7 @@ pageEncoding="utf-8"%>
     <main id="container">
         <section class="section-center">
             <div class="login-box">
-                <form action="" method="post">
+                <form id="joinFrm">
                     <fieldset>
                         <legend>join</legend>
                         <h2 class="form-tit">Join</h2>
@@ -99,7 +99,7 @@ pageEncoding="utf-8"%>
                             </div>
                         </div>
                         <div class="btn-wrap">
-                            <button type="button" class="btn-form" onclick="joinObj.join();">
+                            <button type="button" class="btn-form" id="joinBtn" onclick="joinObj.joinChk();">
                                 <span></span>
                                 <span></span>
                                 <span></span>
@@ -133,17 +133,16 @@ pageEncoding="utf-8"%>
 
 <script type="text/javascript">
 
-
     let idCheck = false;
     const $idChk = $('#idChk');
     //아이디 검사
     $(document).on("keyup","#userNickName",function(){
 
         if (joinObj.idCheck()) {
-            $idChk.text("사용가능한 아이디입니다.");
+            $idChk.css('color','white').text("사용가능한 아이디입니다.");
             idCheck = true;
         }else {
-            $idChk.text("* 이미 사용중인 아이디입니다.");
+            $idChk.css('color','red').text("* 이미 사용중인 아이디입니다.");
             idCheck = false;
         }
     });
@@ -163,6 +162,7 @@ pageEncoding="utf-8"%>
 
     const $Userpassword2 = $('#Userpassword2');
     const $rePwChk = $('#rePwChk');
+    let pwState = false;
     //비밀번호 확인 검사
     $(document).on("keyup","#Userpassword2",function(){
         const pw = $Userpassword.val();
@@ -175,14 +175,37 @@ pageEncoding="utf-8"%>
         }
     });
 
+
     const $userName = $('#userName');
     const $userNickName = $('#userNickName');
     const $groupCd = $('input[name="groupCd"]:checked');
     let joinObj = {
         idCheck : function(){
             // 아이디 중복 검사 로직.
+            const id= $userNickName.val();
+            let rstVal = false;
+
+            $.ajax({
+                url : "/member/idChk",
+                data : {"userNick" : id},
+                type:'GET',
+                async: false,
+                success:function(res){
+                    rstVal = res;
+                },error:function(res){
+                    alert("오류 발생.\n관리자에게 문의해주세요.");
+                    rstVal = false;
+                }
+            });
+
+            return rstVal;
         },
-        join : function(){
+        joinChk : function(){
+
+            if(!idCheck){
+                alert("닉네임을 확인해주세요. \n 이미 사용중인 닉네임입니다.");
+                return false;
+            }
 
             if( !$userName.val() || !$userName.val().trim()){
                 alert("사용자 이름을 입력해주세요.");
@@ -208,6 +231,12 @@ pageEncoding="utf-8"%>
                 return false;
             }
 
+            if( $Userpassword.val() !== $Userpassword2.val()){
+                alert("비밀번호가 일치하지 않습니다.");
+                $Userpassword2.focus();
+                return false;
+            }
+
 
 
             const formData = {
@@ -217,6 +246,7 @@ pageEncoding="utf-8"%>
                 groupCd: $groupCd.val()
             };
 
+
             // 서버로 데이터 전송
             $.ajax({
                 type: 'POST',
@@ -225,6 +255,11 @@ pageEncoding="utf-8"%>
                 data: JSON.stringify(formData),
                 success: function(response) {
                     console.log(response);
+                    if(response !== 1){
+                        alert("회원가입에 실패하였습니다. \n 관리자에게 문의하세요.")
+                    }else{
+                        location.href="/index";
+                    }
                 },
                 error: function(xhr, status, error) {
                     console.error(xhr.responseText); // 에러가 발생하면 콘솔에 로그 출력
@@ -232,6 +267,7 @@ pageEncoding="utf-8"%>
                     console.log(status);
                 }
             });
+
         }
     }
 </script>

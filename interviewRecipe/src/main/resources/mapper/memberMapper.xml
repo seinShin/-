@@ -7,7 +7,7 @@
         /* findOne :: 로그인 user 조회 */
         SELECT *
         FROM tb_mem
-        WHERE userNm= #{userNm}
+        WHERE userNick= #{userNick}
     </select>
 
     <insert id="join" parameterType="interviewRecipe.interviewRecipe.dto.MemberDto" useGeneratedKeys="true" keyProperty="userId">
@@ -20,4 +20,11 @@
         , groupCd = #{groupCd}
         , regDt = NOW()
     </insert>
+
+    <select id="idChk" parameterType="String" resultType="int">
+        /* idChk :: 아이디 중복 체크 */
+        SELECT COUNT(*)
+        FROM tb_mem
+        WHERE userNick = #{userNick}
+    </select>
 </mapper>
