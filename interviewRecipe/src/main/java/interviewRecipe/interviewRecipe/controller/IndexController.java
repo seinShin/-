@@ -1,7 +1,5 @@
 package interviewRecipe.interviewRecipe.controller;
 
-import interviewRecipe.interviewRecipe.dto.MemberDto;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,17 +20,19 @@ public class IndexController {
     /* 기본 로그인 페이지
      *
      * */
-    @GetMapping("")
+    @GetMapping
     public String login( ){
 
         return "index";
     }
 
 
-    @GetMapping("join")
+    /* 회원가입 페이지
+     *
+     * */
+    @GetMapping("/member/join")
     public String joinPage(){
-        System.out.println("123123");
-        return "/member/join";
+        return "member/join";
     }
 
 

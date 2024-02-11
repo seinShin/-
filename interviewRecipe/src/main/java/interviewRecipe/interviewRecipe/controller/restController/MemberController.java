@@ -1,18 +1,24 @@
 package interviewRecipe.interviewRecipe.controller.restController;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import interviewRecipe.interviewRecipe.dto.MemberDto;
+import interviewRecipe.interviewRecipe.service.MemberService;
+import lombok.AllArgsConstructor;
+import org.apache.coyote.Response;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
+@AllArgsConstructor
 @RequestMapping("/member")
 public class MemberController {
 
-
-    @GetMapping("join")
-    public String joinPage(){
-        System.out.println("123123");
-        return "/member/join";
+    private final MemberService memberService;
+    
+    // 회원가입
+    @PostMapping("/join")
+    public ResponseEntity<Integer> join(@RequestBody MemberDto memberDto){
+        return ResponseEntity.ok(memberService.joinUser(memberDto));
     }
+
+
 }

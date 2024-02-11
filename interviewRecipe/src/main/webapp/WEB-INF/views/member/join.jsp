@@ -48,49 +48,50 @@ pageEncoding="utf-8"%>
     <main id="container">
         <section class="section-center">
             <div class="login-box">
-                <form action="">
+                <form action="" method="post">
                     <fieldset>
                         <legend>join</legend>
                         <h2 class="form-tit">Join</h2>
                         <div class="form-group">
                             <div class="form-group-inner">
                                 <label for="userName" class="form-label">Username</label>
-                                <input type="text" id="userName" class="form-control">
+                                <input type="text" id="userName" name="userNm" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-group-inner">
                                 <label for="userNickName" class="form-label">Nickname</label>
-                                <input type="text" id="userNickName" class="form-control">
+                                <input type="text" id="userNickName" name="userNick" class="form-control">
                             </div>
+                            <span class="caution" id="idChk"></span>
                         </div>
                         <div class="form-group">
                             <div class="form-group-inner">
                                 <label for="Userpassword" class="form-label">Password</label>
-                                <input type="password" id="Userpassword" class="form-control">
+                                <input type="password" id="Userpassword" name="userPw" class="form-control">
                             </div> 
-                            <span class="caution">* 영문, 숫자를 혼합하여 8자리 이상 입력해주세요.</span>
+                            <span class="caution" id="pwChk"></span>
                         </div>
                         <div class="form-group">
                             <div class="form-group-inner">
                                 <label for="Userpassword2" class="form-label">confirm<br>Password</label>
                                 <input type="password" id="Userpassword2" class="form-control">
                             </div>
-                            <span class="caution">* 비밀번호가 일치하지 않습니다.</span>
+                            <span class="caution" id="rePwChk"></span>
                         </div>
                         <div class="form-group">
                             <div class="form-group-inner">
-                                <label for="radio01" class="form-label">Type</label>
+                                <label for="MEM002" class="form-label">Type</label>
                                 <div class="form-radio-wrap">
                                     <div class="fancy-box">
-                                        <input type="radio" name="type" class="fancy-check" id="radio01">
-                                        <label for="radio01" class="ico-fancy">
+                                        <input type="radio" name="groupCd" class="fancy-check" id="MEM002" value="MEM002">
+                                        <label for="MEM002" class="ico-fancy">
                                             <span>Interviewer</span>
                                         </label>
                                     </div>
                                     <div class="fancy-box">
-                                        <input type="radio" name="type" class="fancy-check" id="radio02">
-                                        <label for="radio02" class="ico-fancy">
+                                        <input type="radio" name="groupCd" class="fancy-check" id="MEM003" value="MEM003" checked>
+                                        <label for="MEM003" class="ico-fancy">
                                             <span>Learner</span>
                                         </label>
                                     </div>
@@ -98,7 +99,7 @@ pageEncoding="utf-8"%>
                             </div>
                         </div>
                         <div class="btn-wrap">
-                            <button type="button" class="btn-form">
+                            <button type="button" class="btn-form" onclick="joinObj.join();">
                                 <span></span>
                                 <span></span>
                                 <span></span>
@@ -129,3 +130,108 @@ pageEncoding="utf-8"%>
 
 </body>
 </html>
+
+<script type="text/javascript">
+
+
+    let idCheck = false;
+    const $idChk = $('#idChk');
+    //아이디 검사
+    $(document).on("keyup","#userNickName",function(){
+
+        if (joinObj.idCheck()) {
+            $idChk.text("사용가능한 아이디입니다.");
+            idCheck = true;
+        }else {
+            $idChk.text("* 이미 사용중인 아이디입니다.");
+            idCheck = false;
+        }
+    });
+
+    const $Userpassword = $('#Userpassword');
+    const $pwChk = $('#pwChk');
+    //비밀번호 검사
+    $(document).on("keyup","#Userpassword",function(){
+        const pw = $Userpassword.val();
+        const reg = /^(?=.*[a-zA-z])(?=.*[0-9]).{8,}$/;
+        if(reg.test(pw) === false){
+            $pwChk.css('color','red').text("비밀번호는 영문, 숫자를 혼합하여 8자리 이상 입력해주세요.");
+        }else{
+            $pwChk.css('color','white').text("사용 가능한 비밀번호입니다.");
+        }
+    });
+
+    const $Userpassword2 = $('#Userpassword2');
+    const $rePwChk = $('#rePwChk');
+    //비밀번호 확인 검사
+    $(document).on("keyup","#Userpassword2",function(){
+        const pw = $Userpassword.val();
+        const pwRe = $Userpassword2.val();
+
+        if(pw !== pwRe){
+            $rePwChk.css('color','red').text("입력하신 비밀번호가 일치하지 않습니다.");
+        }else{
+            $rePwChk.css('color','white').text("비밀번호가 일치합니다.");
+        }
+    });
+
+    const $userName = $('#userName');
+    const $userNickName = $('#userNickName');
+    const $groupCd = $('input[name="groupCd"]:checked');
+    let joinObj = {
+        idCheck : function(){
+            // 아이디 중복 검사 로직.
+        },
+        join : function(){
+
+            if( !$userName.val() || !$userName.val().trim()){
+                alert("사용자 이름을 입력해주세요.");
+                $userName.focus();
+                return false;
+            }
+
+            if( !$userNickName.val() || !$userNickName.val().trim()){
+                alert("닉네임을 입력해주세요.");
+                $userNickName.focus();
+                return false;
+            }
+
+            if( !$Userpassword.val() || !$Userpassword.val().trim()){
+                alert("비밀번호를 입력해주세요.");
+                $Userpassword.focus();
+                return false;
+            }
+
+            if( !$Userpassword2.val() || !$Userpassword2.val().trim()){
+                alert("비밀번호를 확인해주세요.");
+                $Userpassword2.focus();
+                return false;
+            }
+
+
+
+            const formData = {
+                userNm: $userName.val(),
+                userNick: $userNickName.val(),
+                userPw: $Userpassword.val(),
+                groupCd: $groupCd.val()
+            };
+
+            // 서버로 데이터 전송
+            $.ajax({
+                type: 'POST',
+                url: '/member/join', // 회원가입 처리를 하는 서버의 엔드포인트로 변경
+                contentType: 'application/json',
+                data: JSON.stringify(formData),
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText); // 에러가 발생하면 콘솔에 로그 출력
+                    console.log(error);
+                    console.log(status);
+                }
+            });
+        }
+    }
+</script>

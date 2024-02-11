@@ -72,7 +72,8 @@ pageEncoding="utf-8"%>
 	            				<span></span>
 		            			SUBMIT
 		            		</button>
-	            			<button type="button" class="btn-form">
+	            			<button type="button" class="btn-form" id="joinBtn">
+								<a href="member/join" id="toJoin" style="display: none;"></a>
 	            				<span></span>
 	            				<span></span>
 	            				<span></span>
@@ -94,3 +95,11 @@ pageEncoding="utf-8"%>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
 </html>
+
+<script type="text/javascript">
+
+	// join 버튼 -> join 페이지 이동
+	$("#joinBtn").click(function(){
+		location.href="member/join";
+	})
+</script>

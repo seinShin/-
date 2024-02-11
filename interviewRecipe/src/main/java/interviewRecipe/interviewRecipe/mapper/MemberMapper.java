@@ -11,4 +11,7 @@ public interface MemberMapper {
     //로그인 조회
     MemberDto findOne(String userNm);
 //    Optional<MemberDto> findOne(String userNm);
+
+    //회원가입
+    int join(MemberDto memberDto);
 }
