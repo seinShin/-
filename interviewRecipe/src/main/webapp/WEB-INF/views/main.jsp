@@ -51,8 +51,8 @@ pageEncoding="utf-8"%>
 			<div class="menu-list">
 				<div class="menu-list-inner">
 					<ul>
-						<li><a href="#">면접 주제 등록하기</a></li>
-						<li><a href="#">모의 면접 하기</a></li>
+						<li><a href="/interview/titleWrite">면접 주제 등록하기</a></li>
+						<li><a href="/interview/play">모의 면접 하기</a></li>
 						<li><a href="#">리뷰 확인하기</a></li>
 						<li><a href="#">설정</a></li>
 					</ul>
@@ -64,7 +64,7 @@ pageEncoding="utf-8"%>
 
 	<!-- s:floating-menu -->
     <div class="floating-menu">
-        <a href="#" class="menu"><i class="fas fa-bars"></i></a>
+        <a href="/interview/titleList" class="menu"><i class="fas fa-bars"></i></a>
     </div>
     <!-- e:floating-menu -->
 
