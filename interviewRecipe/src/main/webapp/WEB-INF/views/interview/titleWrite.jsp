@@ -48,20 +48,20 @@ pageEncoding="utf-8"%>
     <main id="container">
         <section class="section-top">
             <div class="form-box">
-                <form action="">
+                <form id="interviewFrm">
                     <fieldset>
-                        <legend>면접 주제 등록하기</legend>
-                        <h2 class="form-tit">면접 주제 등록하기</h2>
+                        <legend>모의 면접 주제 등록</legend>
+                        <h2 class="form-tit">모의 면접 주제 등록</h2>
 
                         <div class="form-inner-box">
                             <div class="form-group">
                                 <div class="form-group-inner">
                                     <label for="formTitle" class="form-label">Title</label>
-                                    <input type="text" id="formTitle" class="form-control">
+                                    <input type="text" id="formTitle" name="title" class="form-control">
                                 </div>
                             </div>
                             <div class="btn-wrap">
-                                <button type="button" class="btn-form">
+                                <button type="button" class="btn-form" id="saveBtn">
                                     <span></span>
                                     <span></span>
                                     <span></span>
@@ -77,8 +77,8 @@ pageEncoding="utf-8"%>
 
         <!-- s:floating-menu -->
         <div class="floating-menu">
-            <a href="#" class="home"><i class="fas fa-paper-plane"></i></a>
-            <a href="#" class="menu"><i class="fas fa-bars"></i></a>
+            <a href="/main" class="home"><i class="fas fa-paper-plane"></i></a>
+            <a href="/interview/titleList" class="menu"><i class="fas fa-bars"></i></a>
         </div>
         <!-- e:floating-menu -->
 
@@ -92,3 +92,28 @@ pageEncoding="utf-8"%>
 
 </body>
 </html>
+<script type="text/javascript">
+
+    $('#saveBtn').click(function(){
+
+        const formData = {
+            userId :  ${userInfo.userId},
+            title  : $('#formTitle').val()
+        }
+        $.ajax({
+            type:'POST',
+            url : "/v1/interview",
+            contentType: 'application/json',
+            data : JSON.stringify(formData),
+            success:function(res){
+                if(res===1){
+                    location.href="/interview/titleList";
+                }else{
+                    alert("등록에 실패하였습니다.\n관리자에게 문의해주세요.");
+                }
+            },error:function(){
+                alert("등록에 실패하였습니다.\n관리자에게 문의해주세요.");
+            }
+        });
+    })
+</script>
