@@ -93,12 +93,9 @@ pageEncoding="utf-8"%>
 
     let interviewObj = {
         list : function(){
-
             $.ajax({
                 type: 'GET',
                 url: '/v1/interview/all/${userInfo.userId}',
-                // contentType: 'application/json',
-                // data: JSON.stringify(formData),
                 success: function(response) {
                     console.log(response);
                     if(response.length >0){
@@ -128,7 +125,25 @@ pageEncoding="utf-8"%>
         },
         delTitle : function(titleId){
             // 삭제
-
+            $.ajax({
+                type: 'Patch',
+                url: '/v1/interview/'+titleId,
+                success: function(response) {
+                    console.log(response);
+                    if(response > 0){
+                        alert("주제가 삭제되었습니다.");
+                        //삭제 후 리스트 정리
+                        $(".titleList").empty(); // ul 요소 비우기
+                        interviewObj.list();
+                    }else{
+                        alert("삭제에 실패하였습니다. \n 관리자에게 문의해주세요.")
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText); // 에러가 발생하면 콘솔에 로그 출력
+                    alert("오류가 발생했습니다. \n 관리자에게 문의해주세요.")
+                }
+            });
         },
         toDetail : function(titleId){
             // 상세 페이지 이동
