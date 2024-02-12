@@ -106,6 +106,7 @@ pageEncoding="utf-8"%>
             // 수정
             state = true;
             $("#formTitle").val(title);
+            $(".form-tit").text("모의 면접 주제 수정");
         }else{
             // 등록
             state = false;
