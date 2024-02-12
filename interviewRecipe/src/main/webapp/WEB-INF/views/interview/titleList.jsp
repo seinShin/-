@@ -86,7 +86,7 @@ pageEncoding="utf-8"%>
 </body>
 </html>
 <script type="text/javascript">
-    const userId = ${userInfo.userId}
+    const userId = ${userInfo.userId};
     $(document).ready(function(){
         interviewObj.list();
     })
@@ -112,18 +112,19 @@ pageEncoding="utf-8"%>
         },
         listReturn : function(res){
 
-            for(const i in res){
-                let title='';
+            for(const i in res) {
+                let title = '';
                 title += '<li class="">';
-                title += '  <button type="button" onclick="interviewObj.toDetail('+res[i].titleId+',\''+res[i].title+'\')">'+res[i].title+'</button>';
-                title += '  <i class="fas fa-times-circle" onclick="interviewObj.delTitle('+res[i].titleId+')"></i>';
+                title += '  <button type="button" onclick="interviewObj.toDetail(' + res[i].titleId + ',\'' + res[i].title + '\')">' + res[i].title + '</button>';
+                title += '  <i class="fas fa-solid fa-play" style="right:18px;" onclick="location.href=\'/interview/play?titleId=' + res[i].titleId + '\'"></i>';
+                title += '  <i class="fas fa-times-circle" onclick="interviewObj.delTitle(' + res[i].titleId + ')"></i>';
                 title += '</li>';
                 console.log(title);
                 $('.titleList').append(title);
             }
 
         },
-        delTitle : function(titleId){
+        delTitle: function(titleId){
             // 삭제
             $.ajax({
                 type: 'Patch',

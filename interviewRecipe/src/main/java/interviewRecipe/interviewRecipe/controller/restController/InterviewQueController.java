@@ -25,8 +25,8 @@ public class InterviewQueController {
     // 주제 별 질문 전체 조회
     @GetMapping("/{titleId}")
     public ResponseEntity<List<InterviewQueDto>> interviewQueList(
-            @PathVariable int titleId){
-        return ResponseEntity.ok(interviewQueService.findAll((long) titleId));
+            @PathVariable Long titleId){
+        return ResponseEntity.ok(interviewQueService.findAll(titleId));
 
     }
 

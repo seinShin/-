@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8"%>
 <html lang="ko">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -52,47 +54,17 @@
                         <h2 class="form-tit">KTDS 면접 준비</h2>
 
                         <div class="question-list">
-                            <div class="list-head">
-                                <span>Order</span>
-                                <span>Question</span>
-                            </div>
-                            <ol>
-                                <li>
-                                    <a href="#">
-                                        <span>1.</span>
-                                        <p>질문 1</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>2.</span>
-                                        <p>질문 2</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>3.</span>
-                                        <p>질문 3</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>4.</span>
-                                        <p>질문 4</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>5.</span>
-                                        <p>질문 5</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>6.</span>
-                                        <p>질문 6</p>
-                                    </a>
-                                </li>
+<%--                            <div class="list-head">--%>
+<%--                                <span>Order</span>--%>
+<%--                                <span>Question</span>--%>
+<%--                            </div>--%>
+                            <ol class="questionList">
+<%--                                <li>--%>
+<%--                                    <a href="#">--%>
+<%--                                        <span>1.</span>--%>
+<%--                                        <p>질문 1</p>--%>
+<%--                                    </a>--%>
+<%--                                </li>--%>
                             </ol>
                         </div>
                     </fieldset>
@@ -102,8 +74,9 @@
 
         <!-- s:floating-menu -->
         <div class="floating-menu">
-            <a href="#" class="monitor"><i class="fas fa-desktop"></i></a>
-            <a href="#" class="home"><i class="fas fa-paper-plane"></i></a>
+<%--            <a href="#" class="monitor"><i class="fas fa-desktop"></i></a>--%>
+            <a href="/main" class="home"><i class="fas fa-paper-plane"></i></a>
+            <a href="#" class="plus"><i class="fas fa-solid fa-plus"></i></a>
         </div>
         <!-- e:floating-menu -->
 
@@ -117,3 +90,52 @@
 
 </body>
 </html>
+<script type="text/javascript">
+    const userId = ${userInfo.userId};
+    let titleId;
+
+    $(document).ready(function(){
+        const params = new URLSearchParams(window.location.search);
+        titleId = params.get('titleId');
+
+        $(".plus").prop("href","/question/write?titleId="+titleId);
+        questionObj.list();
+    })
+
+
+    let questionObj = {
+        list : function(){
+            $.ajax({
+                type: 'GET',
+                url: '/v1/question/'+titleId,
+                success: function(response) {
+                    console.log(response);
+                    if(response.length >0){
+                        questionObj.listReturn(response);
+                    }else{
+                        alert("등록된 질문 없습니다. \n 질문을 등록해주세요.")
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText); // 에러가 발생하면 콘솔에 로그 출력
+                    alert("오류가 발생했습니다. \n 관리자에게 문의해주세요.")
+                }
+            });
+        },
+        listReturn : function(res){
+            // 질문 세팅
+            for(const i in res) {
+                let question = '';
+                question += '<li>';
+                question += '  <a href="#">';
+                question += '  <span><i class="fas fa-solid fa-check"></i></span>';
+                question += '  <p>'+res[i].question+'</p>';
+                question += '</li>';
+                console.log(question);
+                $('.questionList').append(question);
+            }
+
+        },
+    }
+
+</script>
