@@ -68,6 +68,13 @@ pageEncoding="utf-8"%>
                                     <span></span>
                                     SAVE
                                 </button>
+                                <button type="button" class="btn-form" onclick="interviewObj.questionAdd();">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    Question
+                                </button>
                             </div>
                         </div>
                     </fieldset>
@@ -102,7 +109,7 @@ pageEncoding="utf-8"%>
         titleId = params.get('titleId');
         title = params.get('title');
 
-        if(titleId !== ''){
+        if(titleId !== null){
             // 수정
             state = true;
             $("#formTitle").val(title);
@@ -162,8 +169,10 @@ pageEncoding="utf-8"%>
                     alert("수정에 실패하였습니다.\n관리자에게 문의해주세요.");
                 }
             });
+        },
+        questionAdd : function(){
+            location.href="/question/list?titleId="+titleId;
         }
-
     }
 
 </script>
