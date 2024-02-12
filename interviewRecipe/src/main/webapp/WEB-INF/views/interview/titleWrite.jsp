@@ -93,27 +93,76 @@ pageEncoding="utf-8"%>
 </body>
 </html>
 <script type="text/javascript">
+    let state = false;
+    let titleId;
+    let title;
+    $(document).ready(function(){
 
-    $('#saveBtn').click(function(){
+        const params = new URLSearchParams(window.location.search);
+        titleId = params.get('titleId');
+        title = params.get('title');
 
-        const formData = {
-            userId :  ${userInfo.userId},
-            title  : $('#formTitle').val()
+        if(titleId !== ''){
+            // 수정
+            state = true;
+            $("#formTitle").val(title);
+        }else{
+            // 등록
+            state = false;
         }
-        $.ajax({
-            type:'POST',
-            url : "/v1/interview",
-            contentType: 'application/json',
-            data : JSON.stringify(formData),
-            success:function(res){
-                if(res===1){
-                    location.href="/interview/titleList";
-                }else{
+
+    });
+
+    $("#saveBtn").click(function (){
+        if(state === true) interviewObj.modify();
+        else interviewObj.save();
+    });
+
+    let interviewObj = {
+        save : function(){
+            const formData = {
+                userId :  ${userInfo.userId},
+                title  : $('#formTitle').val()
+            }
+            $.ajax({
+                type:'POST',
+                url : "/v1/interview",
+                contentType: 'application/json',
+                data : JSON.stringify(formData),
+                success:function(res){
+                    if(res===1){
+                        location.href="/interview/titleList";
+                    }else{
+                        alert("등록에 실패하였습니다.\n관리자에게 문의해주세요.");
+                    }
+                },error:function(){
                     alert("등록에 실패하였습니다.\n관리자에게 문의해주세요.");
                 }
-            },error:function(){
-                alert("등록에 실패하였습니다.\n관리자에게 문의해주세요.");
+            });
+        },
+        modify : function(){
+            const formData = {
+                "userId" :  ${userInfo.userId},
+                "titleId": titleId,
+                "title"  : $('#formTitle').val()
             }
-        });
-    })
+            $.ajax({
+                type:'Patch',
+                url : "/v1/interview",
+                contentType: 'application/json',
+                data : JSON.stringify(formData),
+                success:function(res){
+                    if(res===1){
+                        location.href="/interview/titleList";
+                    }else{
+                        alert("수정에 실패하였습니다.\n관리자에게 문의해주세요.");
+                    }
+                },error:function(){
+                    alert("수정에 실패하였습니다.\n관리자에게 문의해주세요.");
+                }
+            });
+        }
+
+    }
+
 </script>

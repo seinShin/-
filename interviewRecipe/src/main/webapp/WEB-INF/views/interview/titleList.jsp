@@ -115,7 +115,7 @@ pageEncoding="utf-8"%>
             for(const i in res){
                 let title='';
                 title += '<li class="">';
-                title += '  <button type="button" onclick="interviewObj.toDetail('+res[i].titleId+')">'+res[i].title+'</button>';
+                title += '  <button type="button" onclick="interviewObj.toDetail('+res[i].titleId+',\''+res[i].title+'\')">'+res[i].title+'</button>';
                 title += '  <i class="fas fa-times-circle" onclick="interviewObj.delTitle('+res[i].titleId+')"></i>';
                 title += '</li>';
                 console.log(title);
@@ -145,8 +145,9 @@ pageEncoding="utf-8"%>
                 }
             });
         },
-        toDetail : function(titleId){
+        toDetail : function(titleId, title){
             // 상세 페이지 이동
+            location.href="/interview/titleWrite?titleId="+titleId+"&title="+title;
         }
 
     }
