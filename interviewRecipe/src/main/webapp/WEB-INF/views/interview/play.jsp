@@ -80,3 +80,14 @@ pageEncoding="utf-8"%>
 
 </body>
 </html>
+<script type="text/javascript">
+    let state = false;
+    let titleId;
+    let title;
+    $(document).ready(function(){
+        const params = new URLSearchParams(window.location.search);
+        titleId = params.get('titleId');
+        title = params.get('title');
+
+    });
+</script>
