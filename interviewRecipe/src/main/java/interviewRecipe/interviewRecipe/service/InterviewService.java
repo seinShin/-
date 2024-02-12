@@ -18,8 +18,8 @@ public class InterviewService {
     public int save(InterviewDto interviewDto){ return interviewMapper.save(interviewDto); }
 
     //주제 전체 조회
-    public List<InterviewDto> interviewDtoList(){
-        return interviewMapper.findAll();
+    public List<InterviewDto> interviewDtoList(Long userId){
+        return interviewMapper.findAll(userId);
     }
 
     //주제 조회

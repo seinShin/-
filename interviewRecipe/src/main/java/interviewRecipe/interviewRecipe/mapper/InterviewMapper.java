@@ -12,7 +12,7 @@ public interface InterviewMapper {
     int save(InterviewDto interviewDto);
 
     // 주제 전체 조회
-    List<InterviewDto> findAll();
+    List<InterviewDto> findAll(Long userId);
 
     // 주제 조회
     InterviewDto findOne(Long titleId);

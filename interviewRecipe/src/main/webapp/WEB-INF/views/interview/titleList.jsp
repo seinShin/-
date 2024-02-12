@@ -51,32 +51,16 @@ pageEncoding="utf-8"%>
                 <form action="">
                     <fieldset>
                         <legend>면접 주제 리스트</legend>
-                        <h2 class="form-tit">나의 모의 면접</h2>
+                        <h2 class="form-tit">${userInfo.userNick}의 모의 면접</h2>
 
                         <div class="form-list">
-                            <ul>
-                                <li class="active">
-                                    <!-- s:active -->
-                                    <button type="button">KTDS 면접 준비</button>
-                                    <i class="fas fa-times-circle"></i>
-                                    <!-- e:active -->
-                                </li>
-                                <li>
-                                    <button type="button">KTDS 면접 준비</button>
-                                    <i class="fas fa-times-circle"></i>
-                                </li>
-                                <li>
-                                    <button type="button">KTDS 면접 준비</button>
-                                    <i class="fas fa-times-circle"></i>
-                                </li>
-                                <li>
-                                    <button type="button">KTDS 면접 준비</button>
-                                    <i class="fas fa-times-circle"></i>
-                                </li>
-                                <li>
-                                    <button type="button">KTDS 면접 준비</button>
-                                    <i class="fas fa-times-circle"></i>
-                                </li>
+                            <ul class="titleList">
+<%--                                <li class="active">--%>
+<%--                                    <!-- s:active -->--%>
+<%--                                    <button type="button">KTDS 면접 준비</button>--%>
+<%--                                    <i class="fas fa-times-circle"></i>--%>
+<%--                                    <!-- e:active -->--%>
+<%--                                </li>--%>
                             </ul>
                         </div>
                     </fieldset>
@@ -86,8 +70,8 @@ pageEncoding="utf-8"%>
 
         <!-- s:floating-menu -->
         <div class="floating-menu">
-            <a href="#" class="home"><i class="fas fa-paper-plane"></i></a>
-            <a href="#" class="menu"><i class="fas fa-bars"></i></a>
+            <a href="/main" class="home"><i class="fas fa-paper-plane"></i></a>
+<%--            <a href="/interview/titleList" class="menu"><i class="fas fa-bars"></i></a>--%>
         </div>
         <!-- e:floating-menu -->
 
@@ -101,3 +85,55 @@ pageEncoding="utf-8"%>
 
 </body>
 </html>
+<script type="text/javascript">
+    const userId = ${userInfo.userId}
+    $(document).ready(function(){
+        interviewObj.list();
+    })
+
+    let interviewObj = {
+        list : function(){
+
+            $.ajax({
+                type: 'GET',
+                url: '/v1/interview/all/${userInfo.userId}',
+                // contentType: 'application/json',
+                // data: JSON.stringify(formData),
+                success: function(response) {
+                    console.log(response);
+                    if(response.length >0){
+                        interviewObj.listReturn(response);
+                    }else{
+                        alert("등록된 주제가 없습니다. \n 주제를 등록해주세요.")
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText); // 에러가 발생하면 콘솔에 로그 출력
+                    alert("오류가 발생했습니다. \n 관리자에게 문의해주세요.")
+                }
+            });
+        },
+        listReturn : function(res){
+
+            for(const i in res){
+                let title='';
+                title += '<li class="">';
+                title += '  <button type="button" onclick="interviewObj.toDetail('+res[i].titleId+')">'+res[i].title+'</button>';
+                title += '  <i class="fas fa-times-circle" onclick="interviewObj.delTitle('+res[i].titleId+')"></i>';
+                title += '</li>';
+                console.log(title);
+                $('.titleList').append(title);
+            }
+
+        },
+        delTitle : function(titleId){
+            // 삭제
+
+        },
+        toDetail : function(titleId){
+            // 상세 페이지 이동
+        }
+
+    }
+
+</script>

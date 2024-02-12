@@ -26,16 +26,16 @@ public class InterviewController {
     }
 
     //주제 전체 조회
-    @GetMapping("")
-    public ResponseEntity<List<InterviewDto>> interviewList(){
-        return ResponseEntity.ok(interviewService.interviewDtoList());
+    @GetMapping("/all/{userId}")
+    public ResponseEntity<List<InterviewDto>> interviewList(@PathVariable("userId") Long userId){
+        return ResponseEntity.ok(interviewService.interviewDtoList(userId));
 
     }
 
     //주제 상세 조회 + 해당 질문 조회
     @GetMapping("/{titleId}")
-    public ResponseEntity<InterviewDto> interviewById(@PathVariable int titleId){
-        return ResponseEntity.ok(interviewService.getInterview((long) titleId));
+    public ResponseEntity<InterviewDto> interviewById(@PathVariable Long titleId){
+        return ResponseEntity.ok(interviewService.getInterview(titleId));
     }
 
     //주제 수정
@@ -46,8 +46,8 @@ public class InterviewController {
 
     //주제 삭제
     @PatchMapping("/{titleId}")
-    public ResponseEntity<Integer> interviewDelete(@PathVariable int titleId){
-        return ResponseEntity.ok(interviewService.delete((long) titleId));
+    public ResponseEntity<Integer> interviewDelete(@PathVariable Long titleId){
+        return ResponseEntity.ok(interviewService.delete(titleId));
     }
 
     
