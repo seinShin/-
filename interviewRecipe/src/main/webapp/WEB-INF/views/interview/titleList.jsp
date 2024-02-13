@@ -116,7 +116,7 @@ pageEncoding="utf-8"%>
                 let title = '';
                 title += '<li class="">';
                 title += '  <button type="button" onclick="interviewObj.toDetail(' + res[i].titleId + ',\'' + res[i].title + '\')">' + res[i].title + '</button>';
-                title += '  <i class="fas fa-solid fa-play" style="right:18px;" onclick="location.href=\'/interview/play?titleId=' + res[i].titleId + '\'"></i>';
+                title += '  <i class="fas fa-solid fa-play" style="right:18px; cursor:pointer;" onclick="location.href=\'/interview/play?titleId=' + res[i].titleId  + '&title=' + res[i].title+ '\'"></i>';
                 title += '  <i class="fas fa-times-circle" onclick="interviewObj.delTitle(' + res[i].titleId + ')"></i>';
                 title += '</li>';
                 console.log(title);
