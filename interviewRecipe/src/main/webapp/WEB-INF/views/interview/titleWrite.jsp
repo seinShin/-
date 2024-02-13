@@ -68,7 +68,7 @@ pageEncoding="utf-8"%>
                                     <span></span>
                                     SAVE
                                 </button>
-                                <button type="button" class="btn-form" onclick="interviewObj.questionAdd();">
+                                <button type="button" class="btn-form" id="queBtn" onclick="interviewObj.questionAdd();" >
                                     <span></span>
                                     <span></span>
                                     <span></span>
@@ -114,9 +114,11 @@ pageEncoding="utf-8"%>
             state = true;
             $("#formTitle").val(title);
             $(".form-tit").text("모의 면접 주제 수정");
+            $("#queBtn").show();
         }else{
             // 등록
             state = false;
+            $("#queBtn").hide();
         }
 
     });
