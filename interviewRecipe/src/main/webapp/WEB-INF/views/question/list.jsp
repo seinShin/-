@@ -113,7 +113,7 @@
                     if(response.length >0){
                         questionObj.listReturn(response);
                     }else{
-                        alert("등록된 질문 없습니다. \n 질문을 등록해주세요.")
+                        alert("등록된 질문이 없습니다. \n 질문을 등록해주세요.")
                     }
                 },
                 error: function(xhr, status, error) {
@@ -128,14 +128,38 @@
                 let question = '';
                 question += '<li>';
                 question += '  <a href="#">';
-                question += '  <span><i class="fas fa-solid fa-check"></i></span>';
-                question += '  <p>'+res[i].question+'</p>';
+                question += '   <span><i class="fas fa-check"></i></span>';
+                question += '   <p>'+res[i].question+'</p>';
+                question += '   <i class="fas fa-times-circle" onclick="questionObj.delTitle(' + res[i].queId + ')"></i>';
+                question += '  </a>'
                 question += '</li>';
                 console.log(question);
                 $('.questionList').append(question);
             }
 
         },
+        delTitle : function(queId){
+            // 삭제
+            $.ajax({
+                type: 'Patch',
+                url: '/v1/question/'+queId,
+                success: function(response) {
+                    console.log(response);
+                    if(response > 0){
+                        alert("질문이 삭제되었습니다.");
+                        //삭제 후 리스트 정리
+                        $(".questionList").empty(); // ul 요소 비우기
+                        questionObj.list();
+                    }else{
+                        alert("삭제에 실패하였습니다. \n 관리자에게 문의해주세요.")
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText); // 에러가 발생하면 콘솔에 로그 출력
+                    alert("오류가 발생했습니다. \n 관리자에게 문의해주세요.")
+                }
+            });
+        }
     }
 
 </script>
