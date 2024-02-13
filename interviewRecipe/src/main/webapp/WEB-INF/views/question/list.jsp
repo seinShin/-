@@ -109,7 +109,7 @@
                 type: 'GET',
                 url: '/v1/question/'+titleId,
                 success: function(response) {
-                    console.log(response);
+                    // console.log(response);
                     if(response.length >0){
                         questionObj.listReturn(response);
                     }else{
@@ -133,7 +133,7 @@
                 question += '   <i class="fas fa-times-circle" onclick="questionObj.delTitle(' + res[i].queId + ')"></i>';
                 question += '  </a>'
                 question += '</li>';
-                console.log(question);
+                // console.log(question);
                 $('.questionList').append(question);
             }
 
@@ -144,7 +144,7 @@
                 type: 'Patch',
                 url: '/v1/question/'+queId,
                 success: function(response) {
-                    console.log(response);
+                    // console.log(response);
                     if(response > 0){
                         alert("질문이 삭제되었습니다.");
                         //삭제 후 리스트 정리

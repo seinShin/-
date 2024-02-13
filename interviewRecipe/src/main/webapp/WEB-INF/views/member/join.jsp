@@ -254,7 +254,7 @@ pageEncoding="utf-8"%>
                 contentType: 'application/json',
                 data: JSON.stringify(formData),
                 success: function(response) {
-                    console.log(response);
+                    // console.log(response);
                     if(response !== 1){
                         alert("회원가입에 실패하였습니다. \n 관리자에게 문의하세요.")
                     }else{

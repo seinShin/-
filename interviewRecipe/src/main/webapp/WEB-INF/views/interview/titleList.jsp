@@ -97,7 +97,7 @@ pageEncoding="utf-8"%>
                 type: 'GET',
                 url: '/v1/interview/all/${userInfo.userId}',
                 success: function(response) {
-                    console.log(response);
+                    // console.log(response);
                     if(response.length >0){
                         interviewObj.listReturn(response);
                     }else{
@@ -119,7 +119,7 @@ pageEncoding="utf-8"%>
                 title += '  <i class="fas fa-solid fa-play" style="right:18px; cursor:pointer;" onclick="location.href=\'/interview/play?titleId=' + res[i].titleId  + '&title=' + res[i].title+ '\'"></i>';
                 title += '  <i class="fas fa-times-circle" onclick="interviewObj.delTitle(' + res[i].titleId + ')"></i>';
                 title += '</li>';
-                console.log(title);
+                // console.log(title);
                 $('.titleList').append(title);
             }
 
@@ -130,7 +130,7 @@ pageEncoding="utf-8"%>
                 type: 'Patch',
                 url: '/v1/interview/'+titleId,
                 success: function(response) {
-                    console.log(response);
+                    // console.log(response);
                     if(response > 0){
                         alert("주제가 삭제되었습니다.");
                         //삭제 후 리스트 정리
