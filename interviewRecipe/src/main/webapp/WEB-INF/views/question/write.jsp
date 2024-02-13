@@ -94,7 +94,7 @@
 </html>
 <script type="text/javascript">
     let state = false;
-    let titleId;
+    let queId;
     let title;
     $(document).ready(function(){
 
