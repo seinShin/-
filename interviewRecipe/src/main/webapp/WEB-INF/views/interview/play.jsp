@@ -51,11 +51,14 @@ pageEncoding="utf-8"%>
                 <form action="">
                     <fieldset>
                         <legend>모의면접 하기</legend>
-                        <h2 class="form-tit">KTDS 면접 준비</h2>
+                        <h2 class="form-tit title"></h2>
 
                         <div class="canvas-box">
-                            <p>Q. 본인은 리더형인가요 팔로우 형인가요?</p>
-                            <div class="canvas-content"></div>
+<%--                                <span>Q. </span>--%>
+                            <p>Q.</p>
+                            <p class="question"></p>
+                            <input type="hidden" id="forSound"/>
+<%--                            <div class="canvas-content"></div>--%>
                         </div>
                     </fieldset>
                 </form>
@@ -64,9 +67,9 @@ pageEncoding="utf-8"%>
 
         <!-- s:floating-menu -->
         <div class="floating-menu">
-            <a href="#" class="volume"><i class="fas fa-volume-up"></i></a>
-            <a href="#" class="chat"><i class="fas fa-comments"></i></a>
-            <a href="#" class="home"><i class="fas fa-paper-plane"></i></a>
+            <a href="#" class="volume" onclick="playObj.sound();"><i class="fas fa-volume-up"></i></a>
+            <a href="#" class="chat" onclick="playObj.next();"><i class="fas fa-play"></i></a>
+            <a href="/main" class="home"><i class="fas fa-paper-plane"></i></a>
         </div>
         <!-- e:floating-menu -->
 
@@ -84,10 +87,76 @@ pageEncoding="utf-8"%>
     let state = false;
     let titleId;
     let title;
+    let questionList = Array;
+    let order = 0;
+
     $(document).ready(function(){
         const params = new URLSearchParams(window.location.search);
         titleId = params.get('titleId');
         title = params.get('title');
 
+        $(".title").text(title);
+        playObj.questionList();
+
     });
+
+    let playObj = {
+        questionList : function () {
+            $.ajax({
+                type: 'GET',
+                url: '/v1/question/'+titleId,
+                success: function(response) {
+                    console.log(response);
+                    if(response.length >0){
+                        questionList = response;
+                        playObj.next(response);
+                    }else{
+                        alert("등록된 질문이 없습니다. \n 질문을 등록해주세요.")
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText); // 에러가 발생하면 콘솔에 로그 출력
+                    alert("오류가 발생했습니다. \n 관리자에게 문의해주세요.")
+                }
+            });
+        },
+        // listReturn : function(rst){
+        //     $(".question").text(rst[0].question);
+        //     $("#forSound").val($(".question").text());
+        //     $(".volume").trigger("click");
+        // },
+        next : function(){
+            $(".question").text(questionList[order].question);
+            $("#forSound").val($(".question").text());
+            $(".volume").trigger("click");
+            order++;
+        },
+        sound : function(){
+            // $("#forSound").val($(".question").text());
+            const textInputField = document.querySelector("#forSound")
+            // const btn = document.querySelector("#soundBtn")
+            const utterThis = new SpeechSynthesisUtterance()
+            const synth = window.speechSynthesis
+            let ourText = ""
+
+            const checkBrowserCompatibility = () => {
+                "speechSynthesis" in window
+                    ? console.log("Web Speech API supported!")
+                    : console.log("Web Speech API not supported :-(")
+            }
+
+            checkBrowserCompatibility()
+
+            // btn.onclick = (event) => {
+            //     event.preventDefault()
+                ourText = textInputField.value
+                utterThis.text = ourText
+                synth.speak(utterThis)
+                textInputField.value = ""
+            // }
+        }
+    }
+
+
+
 </script>
