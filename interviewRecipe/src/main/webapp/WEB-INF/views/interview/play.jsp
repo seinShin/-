@@ -58,7 +58,23 @@ pageEncoding="utf-8"%>
                             <p>Q.</p>
                             <p class="question"></p>
                             <input type="hidden" id="forSound"/>
-<%--                            <div class="canvas-content"></div>--%>
+                            <div class="section">
+                                <div>
+                                    <video id="video-output"></video>
+                                    <br/>
+                                    <div class="btn-wrap">
+                                        <button type="button" class="btn-form" id="start-btn">Start</button>
+                                        <button type="button" class="btn-form" id="finish-btn">Stop</button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <video id="recorded-video" controls></video>
+                                    <br />
+                                    <div class="btn-wrap">
+                                        <button id="download-btn"  class="btn-form">Download</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </fieldset>
                 </form>
@@ -83,6 +99,85 @@ pageEncoding="utf-8"%>
 
 </body>
 </html>
+<script type="text/javascript">
+    const videoOutput = document.getElementById('video-output');
+    const startBtn = document.getElementById('start-btn');
+    const downloadBtn = document.getElementById('download-btn');
+    const finishBtn = document.getElementById('finish-btn');
+    const recordedVideo = document.getElementById('recorded-video');
+
+    let mediaStream = null;
+    let mediaRecorder = null;
+    let recordedMediaURL = null;
+
+    // 유저의 카메라로 부터 입력을 사용할 수 있도록 요청
+    navigator.mediaDevices
+        .getUserMedia({ video: true })
+        .then(function (newMediaStream) {
+            mediaStream = newMediaStream;
+
+            // 카메라의 입력을 실시간으로 비디오 태그에서 확인
+            videoOutput.srcObject = mediaStream;
+            videoOutput.onloadedmetadata = function (e) {
+                videoOutput.play();
+            };
+        });
+
+    // 녹화 시작 버튼 클릭 시 빌생하는 이벤트 핸들러 등록
+    startBtn.addEventListener('click', function () {
+        let recordedChunks = [];
+        // 1.MediaStream을 매개변수로 MediaRecorder 생성자를 호출
+        mediaRecorder = new MediaRecorder(mediaStream, {
+            mimeType: 'video/webm;',
+        });
+
+        // 2. 전달받는 데이터를 처리하는 이벤트 핸들러 등록
+        mediaRecorder.ondataavailable = function (event) {
+
+            if (event.data && event.data.size > 0) {
+                console.log('ondataavailable');
+                recordedChunks.push(event.data);
+            }
+        };
+
+
+        // 3. 녹화 중지 이벤트 핸들러 등록
+        mediaRecorder.onstop = function () {
+            // createObjectURL로 생성한 url을 사용하지 않으면 revokeObjectURL 함수로 지워줘야합니다.
+            // 그렇지 않으면 메모리 누수 문제가 발생합니다.
+            if (recordedMediaURL) {
+                URL.revokeObjectURL(recordedMediaURL);
+            }
+
+            const blob = new Blob(recordedChunks, { type: 'video/webm;' });
+            recordedMediaURL = URL.createObjectURL(blob);
+            recordedVideo.src = recordedMediaURL;
+        };
+
+        mediaRecorder.start();
+    });
+
+    // 녹화 종료 버튼 클릭 시 빌생하는 이벤트 핸들러 등록
+    finishBtn.addEventListener('click', function () {
+        if (mediaRecorder) {
+            // 5. 녹화 중지
+            mediaRecorder.stop();
+        }
+    });
+
+    // 다운로드 버튼 클릭 시 발생하는 이벤트 핸들러 등록
+    downloadBtn.addEventListener('click', function () {
+        console.log('recordedMediaURL : ', recordedMediaURL);
+        if (recordedMediaURL) {
+            const link = document.createElement('a');
+            document.body.appendChild(link);
+            link.href = recordedMediaURL;
+            link.download = 'video.webm';
+            link.click();
+            document.body.removeChild(link);
+        }
+    });
+</script>
 <script type="text/javascript">
     let state = false;
     let titleId;
@@ -120,21 +215,20 @@ pageEncoding="utf-8"%>
                 }
             });
         },
-        // listReturn : function(rst){
-        //     $(".question").text(rst[0].question);
-        //     $("#forSound").val($(".question").text());
-        //     $(".volume").trigger("click");
-        // },
         next : function(){
+
             $(".question").text(questionList[order].question);
             $("#forSound").val($(".question").text());
             $(".volume").trigger("click");
             order++;
+
+            //비디오 설정 초기화
+            document.getElementById('recorded-video').src="";
         },
         sound : function(){
-            // $("#forSound").val($(".question").text());
+
+            // 텍스트 음성 추출
             const textInputField = document.querySelector("#forSound")
-            // const btn = document.querySelector("#soundBtn")
             const utterThis = new SpeechSynthesisUtterance()
             const synth = window.speechSynthesis
             let ourText = ""
@@ -146,14 +240,10 @@ pageEncoding="utf-8"%>
             }
 
             checkBrowserCompatibility()
-
-            // btn.onclick = (event) => {
-            //     event.preventDefault()
                 ourText = textInputField.value
                 utterThis.text = ourText
                 synth.speak(utterThis)
                 textInputField.value = ""
-            // }
         }
     }
 
