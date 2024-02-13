@@ -73,13 +73,13 @@ pageEncoding="utf-8"%>
 		            			LOGIN
 		            		</button>
 	            			<button type="button" class="btn-form" id="joinBtn">
-								<a href="member/join" id="toJoin" style="display: none;"></a>
 	            				<span></span>
 	            				<span></span>
 	            				<span></span>
 	            				<span></span>
 		            			JOIN
 		            		</button>
+							<a href="member/join" id="toJoin" style="display: none;"></a>
 	            		</div>
 	            	</fieldset>
 	            </form>
