@@ -31,7 +31,7 @@ pageEncoding="utf-8"%>
     <meta property="og:image" content="">
     <meta property="og:description" content="">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="/static/css/common.css">
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
@@ -40,7 +40,10 @@ pageEncoding="utf-8"%>
 <div id="wrap">
     <!-- s:header -->
     <header id="header">
-        <h1>Interview Recipe</h1>
+        <div><h1>Interview Recipe</h1></div>
+        <div class="header-menu">
+            <a href="/member/logout" class="" ><i class="fas fa-right-from-bracket"></i></a>
+        </div>
     </header>
     <!-- e:header -->
 

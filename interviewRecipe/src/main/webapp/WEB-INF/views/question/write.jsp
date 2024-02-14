@@ -31,7 +31,7 @@
     <meta property="og:image" content="">
     <meta property="og:description" content="">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="/static/css/common.css">
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
@@ -40,7 +40,10 @@
 <div id="wrap">
     <!-- s:header -->
     <header id="header">
-        <h1>Interview Recipe</h1>
+        <div><h1>Interview Recipe</h1></div>
+        <div class="header-menu">
+            <a href="/member/logout" class="" ><i class="fas fa-right-from-bracket"></i></a>
+        </div>
     </header>
     <!-- e:header -->
 
@@ -56,7 +59,7 @@
                         <div class="form-inner-box">
                             <div class="form-group">
                                 <div class="form-group-inner">
-                                    <label for="formTitle" class="form-label">Title</label>
+                                    <label for="formTitle" class="form-label">Question</label>
                                     <input type="text" id="formTitle" name="title" class="form-control">
                                 </div>
                             </div>

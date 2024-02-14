@@ -32,16 +32,14 @@ public class IndexController {
         return "main";
     }
 //
-//
-//    /* 기본 로그인 페이지
-//     *
-//     * */
-//    @GetMapping
-//    public String login( ){
-//
-//        return "index";
-//    }
-//
+
+    /* 기본 로그인 페이지
+     * */
+    @GetMapping("index")
+    public String login( ){
+        return "index";
+    }
+
 
     /* 회원가입 페이지
      *
