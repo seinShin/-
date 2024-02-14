@@ -238,8 +238,8 @@ pageEncoding="utf-8"%>
 
             const checkBrowserCompatibility = () => {
                 "speechSynthesis" in window
-                    ? console.log("Web Speech API supported!")
-                    : console.log("Web Speech API not supported :-(")
+                    ? console.log("Sound Success")
+                    : console.log("Sound Failed :-(")
             }
 
             checkBrowserCompatibility()
