@@ -74,7 +74,7 @@ pageEncoding="utf-8"%>
                                     <video id="recorded-video" controls></video>
                                     <br />
                                     <div class="btn-wrap">
-                                        <button id="download-btn"  class="btn-form">Download</button>
+                                        <button type="button" id="download-btn"  class="btn-form">Download</button>
                                     </div>
                                 </div>
                             </div>
