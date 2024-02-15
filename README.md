@@ -22,6 +22,18 @@
 
 <br/>
 
+# 화면 구성 (Figma)
+
+https://www.figma.com/file/JMylSEBn6sIuIIPv12VkXz/%ED%99%94%EB%A9%B4-%EA%B5%AC%EC%84%B1?type=design&node-id=0-1&mode=design&t=Ld1KTJK72CZ1bEVn-0
+
+<br/>
+
+# ERD
+
+https://www.figma.com/file/WbzrtzThsOcX4PtnEupU2V/Untitled?type=design&node-id=0-1&mode=design&t=Ld1KTJK72CZ1bEVn-0
+
+<br>
+
 # 시연 영상
 
 - 로그인/ 회원가입
